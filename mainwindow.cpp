@@ -4,9 +4,9 @@
  * feel free to clone this repo and modify this code
  *
  * project: StegShield
- * A simple stegenography program that hides text
+ * A simple steganography program that hides text
  * within the least significant bits of the image
- * only one bit of each color of the RGB formatt
+ * only one bit of each color of the RGB color model
 **/
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(4);
     ui->progressBar->setValue(0);
+    QWidget::setWindowTitle("StegShield");
 }
 
 MainWindow::~MainWindow()

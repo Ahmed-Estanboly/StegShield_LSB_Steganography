@@ -1,6 +1,6 @@
-# **StegShield:** A Least Significant Bit Stegenography program.
+# **StegShield:** A Least Significant Bit Steganography program.
 
-A **Stegenography** app that hides text within the **Least Significant Bits** *(LSBs)* of an image implemented in QT6 C++.<br/>
+A **Steganography** app that hides text within the **Least Significant Bits** *(LSBs)* of an image implemented in QT6 C++.<br/>
 This program only accepts *PNG* type images, and the text is stored in the first bit of each color<br/>
 of the *RGB* color model, which means that each *pixel* stores 3 *bits* of data.<br/>
 You can calculate the maximum possible size of the stored text by using this equation:<br/>

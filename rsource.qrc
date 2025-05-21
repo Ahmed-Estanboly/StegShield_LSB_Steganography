@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>StegShieldIco.ico</file>
+    </qresource>
+</RCC>
