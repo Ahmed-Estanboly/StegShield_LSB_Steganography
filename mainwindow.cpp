@@ -46,19 +46,37 @@ void MainWindow::on_browseButton_clicked()
     ui->imageDisplay->setAlignment(Qt::AlignCenter);
     // Scale and set the image
     ui->imageDisplay->setPixmap(pixMap.scaled(300,200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    QImage image(filepath);
+    int size =( ( (image.width() * image.height() * 3) / 8 ) - 8 ) / 1024;
+    ui->textSizeLabel->setText("Allowed text size: " + QString::number(size) + " KB");
+    ui->textEdit->setText("");
 }
 
 
 void MainWindow::on_hideButton_clicked()
 {
     ui->progressBar->setValue(0);
-    if (filepath == "") filepath = ui->lineEdit->text();
     if (filepath == "")
     {
-        QWidget window;
-        QMessageBox::information(&window, "Message",  "No image was chosen.");
-        return;
+        filepath = ui->lineEdit->text();
+        if (filepath == "")
+        {
+            QWidget window;
+            QMessageBox::information(&window, "Message",  "No image was chosen.");
+            return;
+        }
+        //Displaying chosen image
+        QPixmap pixMap(filepath);
+        ui->imageDisplay->setPixmap(pixMap);
+        ui->imageDisplay->setAlignment(Qt::AlignCenter);
+        // Scale and set the image
+        ui->imageDisplay->setPixmap(pixMap.scaled(300,200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        QImage image(filepath);
+        int size =( ( (image.width() * image.height() * 3) / 8 ) - 8 ) / 1024;
+        ui->textSizeLabel->setText("Allowed text size: " + QString::number(size) + " KB");
+        ui->textEdit->setText("");
     }
+
     QString message = ui->textEdit->toPlainText();
     //loading the image
     QImage image(filepath);
@@ -121,7 +139,7 @@ void MainWindow::on_hideButton_clicked()
     //renaming the new encoded image
     int lastSlashIndex = filepath.lastIndexOf('/');
     QString result = filepath.left(lastSlashIndex); // Keep everything before it
-    result += "/Encrypted_" + filepath.right(filepath.length() - filepath.lastIndexOf('/') - 1);
+    result += "/Encoded_" + filepath.right(filepath.length() - filepath.lastIndexOf('/') - 1);
     image.save(result);
     ui->progressBar->setValue(4);
     QWidget window;
@@ -132,14 +150,27 @@ void MainWindow::on_hideButton_clicked()
 void MainWindow::on_revealButton_clicked()
 {
     ui->progressBar->setValue(0);
-    //opening the chosen image
-    if (filepath == "") filepath = ui->lineEdit->text();
     if (filepath == "")
     {
-        QWidget window;
-        QMessageBox::information(&window, "Message",  "No image was chosen.");
-        return;
+        filepath = ui->lineEdit->text();
+        if (filepath == "")
+        {
+            QWidget window;
+            QMessageBox::information(&window, "Message",  "No image was chosen.");
+            return;
+        }
+        //Displaying chosen image
+        QPixmap pixMap(filepath);
+        ui->imageDisplay->setPixmap(pixMap);
+        ui->imageDisplay->setAlignment(Qt::AlignCenter);
+        // Scale and set the image
+        ui->imageDisplay->setPixmap(pixMap.scaled(300,200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        QImage image(filepath);
+        int size =( ( (image.width() * image.height() * 3) / 8 ) - 8 ) / 1024;
+        ui->textSizeLabel->setText("Allowed text size: " + QString::number(size) + " KB");
+        ui->textEdit->setText("");
     }
+    //opening the chosen image
     QImage image(filepath);
     if (image.isNull()) {
         QWidget window;

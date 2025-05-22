@@ -34,7 +34,9 @@ public:
     QLabel *label;
     QLineEdit *lineEdit;
     QPushButton *browseButton;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
+    QLabel *textSizeLabel;
     QTextEdit *textEdit;
     QLabel *imageDisplay;
     QHBoxLayout *horizontalLayout_3;
@@ -84,6 +86,8 @@ public:
 
         gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
 
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
         QFont font3;
@@ -92,7 +96,15 @@ public:
         font3.setItalic(true);
         label_2->setFont(font3);
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        horizontalLayout_2->addWidget(label_2);
+
+        textSizeLabel = new QLabel(centralwidget);
+        textSizeLabel->setObjectName("textSizeLabel");
+
+        horizontalLayout_2->addWidget(textSizeLabel);
+
+
+        gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 1);
 
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
@@ -152,6 +164,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Image Path:", nullptr));
         browseButton->setText(QCoreApplication::translate("MainWindow", "Browse", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Message:", nullptr));
+        textSizeLabel->setText(QCoreApplication::translate("MainWindow", "Allowed text size: ", nullptr));
         imageDisplay->setText(QCoreApplication::translate("MainWindow", "Your image will be displayed here", nullptr));
         hideButton->setText(QCoreApplication::translate("MainWindow", "Hide Message", nullptr));
         revealButton->setText(QCoreApplication::translate("MainWindow", "Reveal Message", nullptr));
